@@ -7,7 +7,7 @@
 - **Real-time Data Updates**: Fetch and display the latest datasets related to Dublin's urban planning.
 - **Interactive Visualizations**: Use **D3.js** for creating interactive charts and graphs to represent datasets like population growth, housing trends, transportation, and more.
 - **API Integration**: Fetch data from external APIs, process it in the backend, and serve it through a RESTful API.
-- **Responsive Web Design**: Optimized for both desktop and mobile views to provide a seamless user experience.
+- **Responsive Web Design(WIP)**: Optimized for both desktop and mobile views to provide a seamless user experience.
 
 ## Tech Stack
 
