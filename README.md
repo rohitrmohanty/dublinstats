@@ -1,5 +1,3 @@
-Here’s the full markdown for your README.md:
-
 # DublinStats.ie
 
 **DublinStats.ie** is a data visualization platform showcasing Dublin's infrastructure and urban development using real-time data from Dublin City Council and the Central Statistics Office (CSO). The platform provides interactive visualizations and insights into various aspects of the city's growth, including transportation, housing, and employment data.
