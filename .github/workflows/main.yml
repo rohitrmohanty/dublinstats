@@ -1,4 +1,4 @@
-name: Deploy Stack to Digital Ocean
+name: Deploy to Digital Ocean
 
 on:
   push:
