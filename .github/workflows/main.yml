@@ -20,7 +20,7 @@ jobs:
 
       - name: Deploy to Digital Ocean
         run: |
-          ssh root@your-droplet-ip << 'EOF'
+          ssh root@{{ secrets.DO_IP_ADDRESS }}<< 'EOF'
             cd /var/www/dublinstats || exit
             git pull origin main || exit
             npm install || exit
