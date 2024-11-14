@@ -1,0 +1,33 @@
+{
+  "name": "dublinstats",
+  "version": "1.0.0",
+  "description": "api endpoint for dublinstats",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rohitrmohanty/dublinstats.git"
+  },
+  "keywords": [
+    "dublin",
+    "data",
+    "d3",
+    "express",
+    "tidyjs"
+  ],
+  "author": "Rohit R. Mohanty",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rohitrmohanty/dublinstats/issues"
+  },
+  "homepage": "https://github.com/rohitrmohanty/dublinstats#readme",
+  "dependencies": {
+    "@tidyjs/tidy": "^2.5.2",
+    "cors": "^2.8.5",
+    "d3-dsv": "^3.0.1",
+    "express": "^4.21.1"
+  }
+}
