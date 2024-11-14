@@ -1,0 +1,28 @@
+name: Deploy to Digital Ocean
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.DO_SSH_KEY }}
+
+      - name: Deploy to Digital Ocean
+        run: |
+          ssh root@your-droplet-ip << 'EOF'
+            cd /var/www/dublinstats || exit
+            git pull origin main || exit
+            npm install || exit
+            pm2 restart server.js || pm2 start server.js --name dublinstats
+          EOF
