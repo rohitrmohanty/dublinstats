@@ -37,7 +37,7 @@ jobs:
             # Check if it's a Git repository
             if [ ! -d .git ]; then
               echo "Initializing Git repository..."
-              git clone <your-repo-url> .
+              git clone https://github.com/rohitrmohanty/dublinstats
             else
               echo "Repository exists. Pulling latest changes..."
               git pull origin main
