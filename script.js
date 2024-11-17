@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  fetch('http://dublinstats.ie/api/unemployment')
+  fetch('/api/unemployment')
     .then(response => response.json())
     .then(data => {
       console.log("Sample Data Entry:", data[0]);
