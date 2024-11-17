@@ -24,8 +24,30 @@ jobs:
       - name: Deploy to Digital Ocean
         run: |
           ssh root@${{ secrets.DO_IP_ADDRESS }} << 'EOF'
-            cd /var/www/dublinstats || exit
-            git pull origin main || exit
-            npm install || exit
+            # Check if the directory exists
+            if [ ! -d /var/www/dublinstats ]; then
+              echo "Directory does not exist. Creating it..."
+              mkdir -p /var/www/dublinstats
+            else
+              echo "Directory already exists. Proceeding..."
+            fi
+            
+            cd /var/www/dublinstats
+      
+            # Check if it's a Git repository
+            if [ ! -d .git ]; then
+              echo "Initializing Git repository..."
+              git clone <your-repo-url> .
+            else
+              echo "Repository exists. Pulling latest changes..."
+              git pull origin main
+            fi
+      
+            # Install dependencies
+            echo "Installing dependencies..."
+            npm install
+      
+            # Restart or start the application
+            echo "Restarting the application..."
             pm2 restart server.js || pm2 start server.js --name dublinstats
           EOF
