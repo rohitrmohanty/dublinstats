@@ -52,8 +52,10 @@ jobs:
 
             echo "Stopping old application..."
             pm2 delete dublinstats-backend || true
+            pwd
+            ls -la
             echo "Starting/restarting application..."
-            pm2 restart backend/server.js || pm2 start backend/server.js --name dublinstats-backend
+            pm2 restart server.js || pm2 start server.js --name dublinstats-backend
             pm2 save
 
             echo "Deployment successful!"
