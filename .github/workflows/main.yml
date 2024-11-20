@@ -1,20 +1,22 @@
 name: Deploy to Digital Ocean
-
 on:
   push:
     branches:
       - main
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out the code
-        uses: actions/checkout@v3  # Updated to v3
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
 
       - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.4  # Updated to v0.5.4
+        uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.DO_SSH_KEY }}
 
@@ -24,30 +26,37 @@ jobs:
       - name: Deploy to Digital Ocean
         run: |
           ssh root@${{ secrets.DO_IP_ADDRESS }} << 'EOF'
-            # Check if the directory exists
-            if [ ! -d /var/www/dublinstats ]; then
-              echo "Directory does not exist. Creating it..."
-              mkdir -p /var/www/dublinstats
-            else
-              echo "Directory already exists. Proceeding..."
-            fi
+            set -e
+            echo "Starting deployment..."
             
-            cd /var/www/dublinstats
-      
-            # Check if it's a Git repository
-            if [ ! -d .git ]; then
-              echo "Initializing Git repository..."
-              git clone <your-repo-url> .
+            if [ ! -d /var/www/dublinstats ]; then
+              echo "Creating project directory..."
+              mkdir -p /var/www/dublinstats
+              git clone https://github.com/rohitrmohanty/dublinstats.git /var/www/dublinstats || { echo "Clone failed"; exit 1; }
             else
-              echo "Repository exists. Pulling latest changes..."
-              git pull origin main
+              cd /var/www/dublinstats
+              git reset --hard
+              git pull origin main || { echo "Pull failed"; exit 1; }
             fi
-      
-            # Install dependencies
+
+            cd /var/www/dublinstats/backend
+            
+            if [ ! -f package.json ]; then
+              echo "Error: package.json not found in backend"
+              exit 1
+            fi
+
             echo "Installing dependencies..."
-            npm install
-      
-            # Restart or start the application
-            echo "Restarting the application..."
-            pm2 restart server.js || pm2 start server.js --name dublinstats
+            npm install || { echo "npm install failed"; exit 1; }
+
+            if [ ! -f server.js ]; then
+              echo "Error: server.js not found in backend"
+              exit 1
+            fi
+
+            echo "Starting/restarting application..."
+            pm2 restart server.js || pm2 start server.js --name dublinstats-backend
+            pm2 save
+
+            echo "Deployment successful!"
           EOF
