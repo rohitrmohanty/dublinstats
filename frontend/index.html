@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dublin Infrastructure Analysis | Dublin City Council Data</title>
+
+    <!-- Meta tags for better SEO -->
+    <meta
+      name="description"
+      content="Analysis of Dublin's infrastructure and unemployment trends using Dublin City Council data"
+    />
+    <meta name="author" content="Rohit R. Mohanty" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <h1>Dublin Infrastructure Analysis</h1>
+      <p class="subtitle">Exploring Dublin's Economic Indicators</p>
+    </header>
+
+    <main>
+      <article class="analysis-container">
+        <h2>
+          Dublin's Employment Landscape: A Quarter-Century Analysis (1998-2024)
+        </h2>
+
+        <section class="analysis-intro">
+          <p class="lead">
+            An in-depth examination of Dublin's unemployment patterns, comparing
+            local trends with national averages across economic cycles.
+          </p>
+        </section>
+
+        <section id="unemployment-analysis" class="chart-section">
+          <h3>Unemployment Trends Visualization</h3>
+          <p class="description">
+            Interactive comparison of Dublin vs National unemployment rates over
+            time.
+          </p>
+
+          <div id="unemployment-chart" class="chart-container">
+            <!-- D3 visualization -->
+          </div>
+
+          <div id="tooltip" class="tooltip" aria-hidden="true">
+            <!-- Dynamic content -->
+          </div>
+        </section>
+
+        <section class="key-findings">
+          <h3>Key Findings</h3>
+          <div class="finding-grid">
+            <div class="finding-card">
+              <h4>Celtic Tiger Period (1998-2007)</h4>
+              <p>
+                Dublin consistently maintained lower unemployment rates than the
+                national average, with rates dropping below 4% during peak
+                economic growth.
+              </p>
+            </div>
+
+            <div class="finding-card">
+              <h4>Economic Crisis (2008-2012)</h4>
+              <p>
+                Sharp increase in unemployment, though Dublin showed more
+                resilience with rates generally staying below national figures.
+              </p>
+            </div>
+
+            <div class="finding-card">
+              <h4>Recovery Phase (2013-2019)</h4>
+              <p>
+                Steady decline in unemployment rates, with Dublin leading the
+                national recovery through strong service sector growth.
+              </p>
+            </div>
+
+            <div class="finding-card">
+              <h4>Covid-19 Impact (2020-2021)</h4>
+              <p>
+                Temporary spike in unemployment, followed by a rapid recovery
+                showing Dublin's economic resilience.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="trends-analysis">
+          <h3>Trend Analysis</h3>
+
+          <div class="trend-section">
+            <h4>Regional Disparities</h4>
+            <p>
+              Dublin's unemployment rate typically trends 0.5-1.5 percentage
+              points below the national average, highlighting the capital's
+              stronger labor market.
+            </p>
+          </div>
+
+          <div class="trend-section">
+            <h4>Economic Resilience</h4>
+            <p>
+              During economic downturns, Dublin shows faster recovery rates
+              compared to national figures, supported by its diverse economic
+              base.
+            </p>
+          </div>
+
+          <div class="trend-section">
+            <h4>Seasonal Patterns</h4>
+            <p>
+              Quarterly fluctuations show consistent patterns, with Q1 typically
+              showing higher unemployment rates followed by improvement in
+              subsequent quarters.
+            </p>
+          </div>
+        </section>
+
+        <section class="methodology">
+          <h3>Methodology & Data Sources</h3>
+          <p>
+            Data is sourced from Dublin City Council's economic indicators,
+            using seasonally adjusted quarterly unemployment rates. The analysis
+            compares Dublin's unemployment rate with national figures from 1998
+            to 2024.
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <p>Data source: Dublin City Council Economic Indicators</p>
+        </div>
+        <div class="footer-section copyright">
+          <p>
+            &copy; <span id="year">2024</span> Rohit R. Mohanty. All rights
+            reserved.
+          </p>
+          <p>Developed with 💙 for Dublin</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script type="module" src="js/script.js"></script>
+
+    <script>
+      // Auto-update year in footer
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
