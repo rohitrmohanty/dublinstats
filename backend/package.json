@@ -30,5 +30,8 @@
     "cors": "^2.8.5",
     "d3-dsv": "^3.0.1",
     "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "express-ssi": "^2.0.3"
   }
 }
