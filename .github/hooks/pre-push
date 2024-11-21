@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Ensure we're in the project root
+cd "$(git rev-parse --show-toplevel)" || exit 1
+
+# Check if server.js exists
+if [ ! -f "backend/server.js" ]; then
+    echo "Error: backend/server.js not found"
+    exit 1
+fi
+
+# Check if frontend serving code is properly commented
+if ! grep -F "// import path" "backend/server.js" > /dev/null || \
+   ! grep -F "// import { __dirname }" "backend/server.js" > /dev/null || \
+   ! grep -F "// app.use(express.static" "backend/server.js" > /dev/null; then
+    echo "Error: Frontend serving code must be commented out in backend/server.js"
+    echo "Current state:"
+    grep -A 4 "/*" "backend/server.js"
+    echo -e "\nEnsure the block looks like this:"
+    echo "/*"
+    echo "  Uncomment the following imports and middleware if serving frontend static files is required."
+    echo "  Comment before pushing to the repo."
+    echo "  You can access the web pages from localhost:3000 (if port not already in use)"
+    echo "*/"
+    echo "// import path from \"path\";"
+    echo "// import { __dirname } from \"./utils/utils.js\";"
+    echo "// app.use(express.static(path.join(__dirname, \"../..\", \"frontend\")));"
+    exit 1
+fi
+
+# Check if index.html exists (warning only)
+if [ ! -f "frontend/index.html" ]; then
+    echo "Warning: frontend/index.html not found"
+    echo "Note: This is just a warning, push will proceed"
+fi
+
+exit 0
