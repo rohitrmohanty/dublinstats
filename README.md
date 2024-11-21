@@ -84,7 +84,9 @@ To serve frontend files locally, uncomment the static file serving middleware in
 ```javascript
 import path from "path";
 import { __dirname } from "./utils/utils.js";
+import ssi from "express-ssi";
 app.use(express.static(path.join(__dirname, "../..", "frontend")));
+app.use(ssi);
 ```
 
 ### Environment Variables
