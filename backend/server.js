@@ -15,9 +15,9 @@ app.use(cors());
   Comment before pushing to the repo.
   You can access the web pages from localhost:3000 (if port not already in use)
 */
-// import path from "path";
-// import { __dirname } from "./utils/utils.js";
-// app.use(express.static(path.join(__dirname, "../..", "frontend")));
+import path from "path";
+import { __dirname } from "./utils/utils.js";
+app.use(express.static(path.join(__dirname, "../..", "frontend")));
 
 // Simple endpoint returning pre-cleaned data
 app.get("/api/unemployment", (req, res) => {
