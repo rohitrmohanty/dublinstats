@@ -1,88 +1,110 @@
 # DublinStats.ie
 
-**DublinStats.ie** is a data visualization platform showcasing Dublin's infrastructure and urban development using real-time data from Dublin City Council and the Central Statistics Office (CSO). The platform provides interactive visualizations and insights into various aspects of the city's growth, including transportation, housing, and employment data.
+[**DublinStats.ie**](https://dublinstats.ie) is a data visualization platform showcasing Dublin's infrastructure and urban development using real-time data from Dublin City Council and the Central Statistics Office (CSO). The platform provides interactive visualizations and insights into various aspects of the city's growth, including unemployment rates, employment trends, and economic indicators.
 
 ## Features
 
-- **Real-time Data Updates**: Fetch and display the latest datasets related to Dublin's urban planning.
-- **Interactive Visualizations**: Use **D3.js** for creating interactive charts and graphs to represent datasets like population growth, housing trends, transportation, and more.
-- **API Integration**: Fetch data from external APIs, process it in the backend, and serve it through a RESTful API.
-- **Responsive Web Design(WIP)**: Optimized for both desktop and mobile views to provide a seamless user experience.
+- **Real-time Data Updates**: Fetch and display the latest datasets from Dublin Economic Monitor
+- **Interactive Visualizations**: Use **D3.js** for creating interactive charts and graphs to represent:
+  - Unemployment rates
+  - Employment trends
+  - Economic indicators
+- **Responsive Web Design**: Optimized for both desktop and mobile views
+
+## Project Structure
+
+```
+.
+├── .github/
+│   └── workflows/          # GitHub Actions workflows
+├── backend/
+│   ├── utils/
+│   │   ├── dataClean.js   # Data processing utilities
+│   │   └── utils.js       # General utility functions
+│   ├── server.js          # Express server setup
+│   └── package.json       # Backend dependencies
+├── frontend/
+│   ├── css/              # Stylesheet directory
+│   ├── js/               # JavaScript files
+│   └── index.html        # Main HTML file
+└── README.md
+```
 
 ## Tech Stack
 
-- **Frontend**:
-  - **Vanilla JavaScript** for handling the UI and dynamic content.
-  - **D3.js** for creating visualizations.
-  - **CSS** for styling (plain CSS with no preprocessor).
-  
-- **Backend**:
-  - **Node.js** with **Express** to serve the API and handle business logic.
-  
-- **Deployment**:
-  - Hosted on **Digital Ocean**.
-  - **Nginx** used as a reverse proxy for handling both static files and the Express API.
-  - **GitHub Actions** for automated deployments on code changes.
+### Frontend
+
+- **Vanilla JavaScript** for DOM manipulation and data handling
+- **D3.js** for data visualizations
+- **CSS** for styling (plain CSS, no preprocessor)
+
+### Backend
+
+- **Node.js** with **Express** framework
+- **Tidy.js** for data cleaning and transformation
+- CORS enabled for cross-origin requests
+
+### Deployment
+
+- Hosted on **Digital Ocean**
+- **Nginx** as reverse proxy
+- **GitHub Actions** for CI/CD
 
 ## Getting Started
 
-To run the project locally, follow these steps:
-
 ### Prerequisites
 
-Make sure you have **Node.js** and **npm** installed. You can check by running:
+Ensure you have Node.js and npm installed:
 
 ```bash
 node -v
 npm -v
 ```
 
-Clone the Repository
+### Installation
+
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/rohitrmohanty/dublinstats.git
 cd dublinstats
 ```
 
-Install Dependencies
+2. Install backend dependencies:
 
-	•	For the backend:
- 
 ```bash
-cd server
-npm install
-```
-	•	For the frontend:
- 
-```bash
-cd client
+cd backend
 npm install
 ```
 
-Run Locally
+### Development
 
-	•	Start the server:
- 
+To serve frontend files locally, uncomment the static file serving middleware in server.js:
+
+```javascript
+import path from "path";
+import { __dirname } from "./utils/utils.js";
+app.use(express.static(path.join(__dirname, "../..", "frontend")));
+```
+
+### Environment Variables
+
+- `PORT`: Server port number (default: 3000)
+
+### Running Locally
+
+1. Start the server:
+
 ```bash
 npm start
 ```
 
-This will run the app at http://localhost:3000.
+The server will run on http://localhost:3000 (or your specified PORT environment variable)
 
-Deploy
+## Deployment
 
-The app is deployed on Digital Ocean. Changes pushed to the main branch will automatically trigger deployment via GitHub Actions.
+Changes pushed to the main branch automatically trigger deployment via GitHub Actions to Digital Ocean.
 
-License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-### Explanation of Sections:
-
-- **Project Overview**: This section gives an overall description of the project.
-- **Features**: Lists the main functionality of the project.
-- **Tech Stack**: Details the tools and technologies used in the project.
-- **Getting Started**: Instructions on how to set up and run the project locally.
-- **License**: Information about the project license.
-
-You can use and modify this as needed for your repository. Let me know if you need further adjustments!
