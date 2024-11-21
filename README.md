@@ -24,10 +24,29 @@
 │   ├── server.js          # Express server setup
 │   └── package.json       # Backend dependencies
 ├── frontend/
-│   ├── css/              # Stylesheet directory
-│   ├── js/               # JavaScript files
-│   └── index.html        # Main HTML file
+  ├── index.html
+  ├── css/
+  │   └── global.css
+  ├── js/
+  │   └── global.js
+  ├── pages/
+  │   ├── unemployment/
+  │   │   ├── index.html
+  │   │   ├── css/
+  │   │   │   └── styles.css
+  │   │   └── js/
+  │   │       └── main.js
+  │   └── employment/
+  │       ├── index.html
+  │       ├── css/
+  │       │   └── styles.css
+  │       └── js/
+  │           └── main.js
+  └── shared/
+    ├── header.html
+    └── footer.html
 └── README.md
+└── LICENSE.md
 ```
 
 ## Tech Stack
